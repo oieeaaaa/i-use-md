@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "highlight.js": "^10.6.0",
     "marked": "^2.0.0",
-    "vue": "^2.6.11"
+    "normalize.css": "^8.0.1",
+    "vue": "^2.6.11",
+    "vue-markdown-highlight": "^1.0.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

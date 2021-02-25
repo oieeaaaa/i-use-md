@@ -1,4 +1,7 @@
 :root {
   --font-display: "Cabin Sketch", monospace;
   --font-serif: "Newsreader", serif;
+  --margin-s: 1.5rem;
+  --margin-m: 2rem;
+  --margin-l: 4rem;
 }
