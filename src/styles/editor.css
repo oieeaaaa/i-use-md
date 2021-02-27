@@ -1,12 +1,25 @@
+.editor-controls {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  z-index: 11;
+}
+
+.editor__save {
+  padding: 1rem;
+  color: palevioletred;
+  background: papayawhip;
+  font-family: var(--font-display);
+}
+
 .editor__toggler {
-  position: fixed;
   background: palevioletred;
   color: white;
   padding: 1rem;
   font-family: var(--font-display);
-  top: 0;
-  right: 0;
-  z-index: 11;
 }
 
 .editor__input {
@@ -35,6 +48,7 @@
 }
 
 .editor__preview.active {
+  top: 3.8rem;
   transform: translateY(0%);
 }
 
@@ -50,6 +64,7 @@
   }
 
   .editor__preview {
+    top: 0;
     position: static;
     padding: 2rem;
     transform: unset;

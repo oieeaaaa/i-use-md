@@ -1,8 +1,13 @@
 <template>
   <div class="editor">
-    <button class="editor__toggler" v-on:click="toggle" v-if="isNotDesktop">
-      {{ !isOpen ? 'Show Preview' : 'Hide Preview'}}
-    </button>
+    <div class="editor-controls" v-if="isNotDesktop">
+      <button class="editor__save" v-on:click="onSave">
+        Save
+      </button>
+      <button class="editor__toggler" v-on:click="toggle">
+        {{ !isOpen ? 'Preview' : 'Editor'}}
+      </button>
+    </div>
     <textarea class="editor__input" :value="input" @input="update"></textarea>
     <div :class="previewClass" v-highlight v-html="markdown"></div>
   </div>
@@ -10,6 +15,7 @@
 
 <script>
 import marked from 'marked';
+import whatBreakpoint from '../utils/whatBreakpoint.js';
 
 const SAVED_KEY = 'SUSI'; // ✍️
 const SAMPLE_DATA = `
@@ -85,7 +91,9 @@ export default {
       this.input = e.target.value;
     },
     onSave(e) {
-      if (!(e.ctrlKey && e.keyCode === 19)) return;
+      if (whatBreakpoint() === 'desktop') {
+        if (!(e.ctrlKey && e.keyCode === 19)) return;
+      }
 
       localStorage.setItem(SAVED_KEY, this.input);
 
@@ -108,12 +116,15 @@ export default {
         this.input = savedData;
     }
 
-    if (window.innerWidth < 1280) {
+    if (whatBreakpoint() !== 'desktop') {
       this.isNotDesktop = true;
     }
   },
   created() {
     window.addEventListener('keypress', this.onSave);
   },
+  destroyed() {
+    window.removeEventListener('keypress', this.onSave);
+  }
 }
 </script>
